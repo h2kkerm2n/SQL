@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column()
   firstName: string;
@@ -13,7 +13,7 @@ class User {
   @Column()
   mobile: string;
   @Column()
-  eMail: string;
+  email: string;
   @Column()
   registeredAt: Date;
   @Column()
@@ -22,7 +22,6 @@ class User {
   intro: string;
   @Column()
   profile: string;
-  @Column()
 }
 
 export default User;
