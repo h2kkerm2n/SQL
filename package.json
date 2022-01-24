@@ -1,0 +1,27 @@
+{
+  "name": "blog.project",
+  "version": "1.0.0",
+  "description": "blog.project for learning typescript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h2kkerm2n/blog.project.git"
+  },
+  "keywords": [
+    "typescript",
+    "nodejs",
+    "typeorem"
+  ],
+  "author": "RP",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/h2kkerm2n/blog.project/issues"
+  },
+  "homepage": "https://github.com/h2kkerm2n/blog.project#readme",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  }
+}
