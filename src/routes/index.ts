@@ -1,8 +1,11 @@
 import express from 'express';
 import fs from 'fs';
-import createUser from './user/createUser';
-import getUser from './user/getUser';
-import getUsers from './user/getUsers';
+import createUser from './users/createUser';
+import getUser from './users/getUser';
+import getUsers from './users/getUsers';
+import getPost from './posts/getPost';
+import getPosts from './posts/getPosts';
+import createPost from './posts/createPost';
 const router = express.Router();
 // var userRoutes: string[] = [];
 
@@ -14,5 +17,6 @@ const router = express.Router();
 // console.log(userRoutes.toString());
 
 router.use('/users', [createUser, getUser, getUsers]);
+router.use('/posts', [createPost, getPost, getPosts]);
 
 export default router;

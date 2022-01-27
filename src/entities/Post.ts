@@ -1,30 +1,30 @@
 import {
   BaseEntity,
-  Column,
-  CreateDateColumn,
-  Entity,
+  PrimaryGeneratedColumn,
   JoinColumn,
   ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Entity
 } from 'typeorm';
-import { StringLiteralLike } from 'typescript';
 import User from './user';
 
 @Entity()
-export class Post extends BaseEntity {
+export default class Post extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  id!: StringLiteralLike;
-  @ManyToOne(() => User)
-  authorId: string;
+  id!: string;
   @Column('varchar', { length: 75 })
   title: string;
+  @Column()
+  authorId!: string;
+  @Column()
+  parentId!: string;
   @Column('varchar', { length: 100 })
-  metaTitle: string;
+  metaTitle?: string;
   @Column('tinytext')
   summary: string;
-  @Column()
+  @Column('boolean', { default: false })
   published: boolean;
   @Column('text')
   content: string;
@@ -33,8 +33,14 @@ export class Post extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => User, (user) => user.id)
-  author: User;
-}
+  @ManyToOne(() => User, (user) => user.posts, {
+    createForeignKeyConstraints: true
+  })
+  author: Promise<User>;
 
-export default Post;
+  // Parent post
+  @ManyToOne(() => Post, (post) => post.parentId, {
+    createForeignKeyConstraints: true
+  })
+  parentPost: Promise<User>;
+}

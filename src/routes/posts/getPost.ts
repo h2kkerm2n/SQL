@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
-import { post } from '../../app';
-import Post, { Post } from '../../entities/Post';
+import Post from '../../entities/Post';
 const router = express.Router();
 
 // Find post by ID
@@ -11,21 +10,21 @@ router.get('/:id', async (req: Request, res: Response) => {
     const post = await Post.findOne({ id: id });
 
     if (!post) {
-      return res.send({
+      return res.json({
         message: 'no post found with given ID'
       });
     }
 
-    return res.send(post);
+    return res.json(post);
   } catch (error) {
     if (error instanceof Error) {
-      return res.send({
+      return res.json({
         error: 'Unable to find user',
         message: error.message
       });
     }
     // unknown (typeorm error?)
-    return res.send({
+    return res.json({
       error: 'Unable to create new user',
       message: 'unknown error'
     });

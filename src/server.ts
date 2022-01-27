@@ -1,13 +1,11 @@
-import Http from 'http';
-import App from './app';
-import { openDatabaseConnection } from './db/db';
+const http = require('http');
 
-const startServer = async () => {
-  const httpServer = Http.createServer(App);
-  await openDatabaseConnection();
+const server = http.createServer((req, res) => {
+  res.statuscode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello!');
+});
 
-  httpServer.listen(3000, () => {
-    console.log('Server started on http://localhost:3000');
-  });
-};
-startServer();
+server.listen(3000, () => {
+  console.log('Server started on http://localhost:3000');
+});
